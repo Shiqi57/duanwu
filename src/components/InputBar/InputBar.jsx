@@ -23,10 +23,9 @@ const InputBar = (props) => {
     }
     else {
       const data = encode({
-        'form-name'  : 'contact',
-        'username'   : name,
-        'wish'       : wish,
-        'test-field' : 'testAll'
+        'form-name' : 'contact',
+        'name'      : name,
+        'wish'      : wish
       });
 
       // console.info(encode({ 'form-name' : 'contact', ...data }));
@@ -54,7 +53,7 @@ const InputBar = (props) => {
     <div className={classnames(styled.InputBar, className)}>
       <form name='contact' method='POST' data-netlify='true' className={styled.form}>
         <input type="hidden" name="form-name" value="contact" />
-        {!name && <div>Your Name: <input ref={nameInput} className={styled.input} name='username' /></div>}
+        {!name && <div>Your Name: <input ref={nameInput} className={styled.input} name='name' /></div>}
         {name && (
           <div>
             Your Wish: <input ref={wishInput} className={styled.input} name='wish' onChange={updateWish} />
