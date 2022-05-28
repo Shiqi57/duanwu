@@ -1,0 +1,12 @@
+.Landing {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  @include flex-center;
+  @include ls-semibold(32);
+  background-color: $black;
+  color: $pink;
+  z-index: 2;
+  justify-content: center;
+  padding-bottom: px(30);
+}

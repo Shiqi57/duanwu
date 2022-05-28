@@ -1,0 +1,28 @@
+// @import 'node_modules/breakpoint-sass/stylesheets/breakpoint';
+@import 'colors';
+@import 'eases';
+
+/* Defaults */
+$default-width: 1920 !default;
+$default-height: 900 !default;
+$default-total-columns: 40 !default;
+$default-inline-svg-width: 100px !default;
+
+/* Breakpoints */
+$iphone-plus: (width 320px 414px) (height 600px 736px); /* iPhone 6 Plus, 6s Plus, 7 Plus */
+$iphone: (width 320px 414px) (height 500px 599px); /* iPhone 6, 6s, 7 */
+$iphone-small: (width 320px 414px) (height 300px 499px); /* iPhone 4, SE, 5, 5s */
+$phone-small: (width 300px 414px) (height 300px 600px);
+$phone-wide: (width 540px 727px);
+$phone: (width 300px 727px);
+$phone-landscape: (width 300px 960px);
+$tablet: (width 728px 1024px);
+$mobile: (max-width 1024px); /* tablet and phone */
+$desktop-narrow: (width 1025px 1399px); /* lower resolution displays */
+$desktop-common: (width 1366px 1439px); /* most common desktop resolution */
+$desktop-wide-small: (min-width 1025px) (height 500px 700px);
+$desktop-wide-narrow: (min-width 1025px) (max-height 500px);
+$desktop: (min-width 1025px); /* all desktop devices */
+$desktop-hd: (min-width 1440px); /* essentially all retina macbook pros */
+$above-desktop-design: (min-width 1441px);
+$ultra-hd: (min-width 1921px);

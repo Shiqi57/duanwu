@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "hex-ci.stylelint-plus",
+    "clinyong.vscode-css-modules"
+  ]
+}

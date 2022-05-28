@@ -1,0 +1,17 @@
+import {{pascal}} from './{{pascal}}';
+
+const {{pascal}}Stories = {
+  title     : 'components/{{pascal}}',
+  component : {{pascal}}
+};
+
+//👇 We create a “template” of how args map to rendering
+const Template = (args) => <{{pascal}} {...args} />;
+
+//👇 Each story then reuses that template
+export const Primary = Template.bind({});
+Primary.args = {
+  // your component's props go here
+};
+
+export default {{pascal}}Stories;

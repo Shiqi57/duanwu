@@ -1,0 +1,27 @@
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import styled from './{{pascal}}.module.scss';
+
+const propTypes = {
+  className : PropTypes.string
+};
+const defaultProps = {
+  className : ''
+};
+
+const {{pascal}} = (props) => {
+  const { className } = props;
+
+  const rootClassNames = classnames(styled.container, className);
+
+  return (
+    <div className={rootClassNames}>
+      {{pascal}}
+    </div>
+  );
+};
+
+{{pascal}}.propTypes = propTypes;
+{{pascal}}.defaultProps = defaultProps;
+
+export default {{pascal}};
