@@ -1,0 +1,28 @@
+/**
+ * notes:
+ *   - shallow: https://github.com/pmndrs/zustand#selecting-multiple-state-slices
+ */
+import create from 'zustand';
+import shallow from 'zustand/shallow';
+
+const {{camel}}Store = create((set) => ({
+  //
+}));
+
+/**
+ * shallow by default to prevent
+ * unecessary re-rendering.
+ */
+const use{{pascal}}Store = (cb = null, isShallow = true) => {
+  if (cb) {
+    if (isShallow) {
+      return {{camel}}Store(cb, shallow);
+    } else {
+      return {{camel}}Store(cb);
+    }
+  } else {
+    return {{camel}}Store();
+  }
+};
+
+export default use{{pascal}}Store;

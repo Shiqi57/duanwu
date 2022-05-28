@@ -1,0 +1,35 @@
+@import 'shared';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  @include webkit-smooth-scroll;
+  box-sizing: border-box;
+}
+
+// For projects where body scroll locking
+// is required. This will solve most of
+// Safari's issues
+body.body-scroll-lock {
+  @include body-scroll-lock;
+}
+
+/*
+ * Typography
+ *
+ */
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+}

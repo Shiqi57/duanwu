@@ -1,0 +1,10 @@
+.Canvas {
+  @include full-size(fixed);
+  overflow: hidden;
+  overscroll-behavior-y: none;
+
+  .renderer {
+    position: relative;
+    z-index: 1;
+  }
+}

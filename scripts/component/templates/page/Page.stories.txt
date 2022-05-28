@@ -1,0 +1,8 @@
+import {{pascal}} from './{{pascal}}';
+
+const {{pascal}}Stories = {
+  title : 'pages/{{pascal}}',
+};
+
+export const Normal = () => <{{pascal}} />;
+export default {{pascal}}Stories;

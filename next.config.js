@@ -1,6 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+const withSvgr = require('next-plugin-svgr');
 
-module.exports = nextConfig
+module.exports = withSvgr({
+  swcMinify       : true,
+  reactStrictMode : true,
+  sassOptions     : {
+    additionalData : `
+      @use "sass:math";
+      @import "src/styles/_shared.scss";
+    `
+  }
+});
+
