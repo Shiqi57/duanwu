@@ -19,22 +19,23 @@ const InputBar = (props) => {
       setName(nameInput.current.value);
       setBtnCopy('Submit');
     }
-    // else {
-    //   const data = {
-    //     Name : name,
-    //     Wish : wishInput.current.value
-    //   };
-    //   // console.info(encode({ 'form-name' : 'contact', ...data }));
-    //   fetch('/', {
-    //     method  : 'POST',
-    //     headers : { 'Content-Type' : 'application/x-www-form-urlencoded' },
-    //     body    : encode({ 'form-name' : 'contact', ...data })
-    //   })
-    //     // eslint-disable-next-line no-console
-    //     .then(() => console.log('Form successfully submitted'))
-    //     .catch((error) => alert(error));
+    else {
+      e.preventDefault();
+      const data = {
+        name : name,
+        wish : wishInput.current.value
+      };
+      // console.info(encode({ 'form-name' : 'contact', ...data }));
+      fetch('/', {
+        method  : 'POST',
+        headers : { 'Content-Type' : 'application/x-www-form-urlencoded' },
+        body    : encode({ 'form-name' : 'contact', ...data })
+      })
+        // eslint-disable-next-line no-console
+        .then(() => console.log('Form successfully submitted'))
+        .catch((error) => alert(error));
       
-    // }
+    }
   };
   const encode = (data) => {
     return Object.keys(data)
@@ -46,8 +47,8 @@ const InputBar = (props) => {
     <div className={classnames(styled.InputBar, className)}>
       <form name='contact' method='POST' data-netlify='true' className={styled.form}>
         <input type="hidden" name="form-name" value="contact" />
-        {!name && <div>Your Name: <input ref={nameInput} className={styled.input} /></div>}
-        {name && <div>Your Wish: <input ref={wishInput} className={styled.input} /></div>}
+        {!name && <div>Your Name: <input ref={nameInput} className={styled.input} name='name' /></div>}
+        {name && <div>Your Wish: <input ref={wishInput} className={styled.input} name='wish' /></div>}
         <p>
           <button type='submit' className={styled.submit} onClick={handleClick}>{btnCopy}</button>
         </p>
