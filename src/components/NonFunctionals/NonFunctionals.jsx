@@ -37,10 +37,10 @@ const NonFunctionals = (props) => {
       {rotateDevice && <RotateDevice />}
       {webglDisabled && <WebGlDisabled />}
       <JavaScriptDisabled />
-      {
+      {/* {
         !(deviceSupport.browser && deviceSupport.os) &&
           <DeviceUnsupported />
-      }
+      } */}
     </div>
   );
 };
