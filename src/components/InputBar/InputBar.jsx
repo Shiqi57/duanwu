@@ -22,9 +22,10 @@ const InputBar = (props) => {
     else {
       e.preventDefault();
       const data = encode({
-        'form-name' : 'contact',
-        'username'  : name,
-        'wish'      : wishInput.current.value
+        'form-name'  : 'contact',
+        'username'   : name,
+        'wish'       : wishInput.current.value,
+        'test-field' : 'testAll'
       });
 
       // console.info(encode({ 'form-name' : 'contact', ...data }));
@@ -51,6 +52,7 @@ const InputBar = (props) => {
         <input type="hidden" name="form-name" value="contact" />
         {!name && <div>Your Name: <input ref={nameInput} className={styled.input} name='username' /></div>}
         {name && <div>Your Wish: <input ref={wishInput} className={styled.input} name='wish' /></div>}
+        <input type="hidden" name="test-field" value="testAll" />
         <p>
           <button type='submit' className={styled.submit} onClick={handleClick}>{btnCopy}</button>
         </p>
