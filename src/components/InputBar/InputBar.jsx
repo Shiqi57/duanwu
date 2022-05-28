@@ -9,22 +9,23 @@ const defaultProps = { className : '' };
 const InputBar = (props) => {
   const { className } = props;
   const [name, setName] = useState(null);
+  const [wish, setWish] = useState(null);
   const [btnCopy, setBtnCopy] = useState('Next');
   const nameInput = useRef();
   const wishInput = useRef();
 
   const handleClick = (e) => {
+    e.preventDefault();
     if (!name) {
-      e.preventDefault();
+      
       setName(nameInput.current.value);
       setBtnCopy('Submit');
     }
     else {
-      e.preventDefault();
       const data = encode({
         'form-name'  : 'contact',
         'username'   : name,
-        'wish'       : wishInput.current.value,
+        'wish'       : wish,
         'test-field' : 'testAll'
       });
 
@@ -45,13 +46,20 @@ const InputBar = (props) => {
       .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
       .join('&');
   };
+  const updateWish = (e) => {
+    setWish(e.target.value);
+  };
 
   return (
     <div className={classnames(styled.InputBar, className)}>
       <form name='contact' method='POST' data-netlify='true' className={styled.form}>
         <input type="hidden" name="form-name" value="contact" />
         {!name && <div>Your Name: <input ref={nameInput} className={styled.input} name='username' /></div>}
-        {name && <div>Your Wish: <input ref={wishInput} className={styled.input} name='wish' /></div>}
+        {name && (
+          <div>
+            Your Wish: <input ref={wishInput} className={styled.input} name='wish' onChange={updateWish} />
+          </div>
+        )}
         <input type="hidden" name="test-field" value="testAll" />
         <p>
           <button type='submit' className={styled.submit} onClick={handleClick}>{btnCopy}</button>
