@@ -28,7 +28,7 @@
     "device-detector-js": "^3.0.0",
     "framer-motion": "^6.2.8",
     "framer-motion-3d": "^6.2.8",
-    "gsap": "./src/vendor/gsap-bonus.tgz",
+    "gsap": "^3.10.4",
     "hls.js": "^1.1.5",
     "hotkeys-js": "^3.8.7",
     "lethargy": "^1.0.9",
