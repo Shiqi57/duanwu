@@ -21,15 +21,17 @@ const InputBar = (props) => {
     }
     else {
       e.preventDefault();
-      const data = {
-        username : name,
-        wish     : wishInput.current.value
-      };
+      const data = encode({
+        'form-name' : 'contact',
+        'username'  : name,
+        'wish'      : wishInput.current.value
+      });
+
       // console.info(encode({ 'form-name' : 'contact', ...data }));
       fetch('/', {
         method  : 'POST',
         headers : { 'Content-Type' : 'application/x-www-form-urlencoded' },
-        body    : encode({ 'form-name' : 'contact', ...data })
+        body    : data
       })
         // eslint-disable-next-line no-console
         .then(() => console.log('Form successfully submitted'))
