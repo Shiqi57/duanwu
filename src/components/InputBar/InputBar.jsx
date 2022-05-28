@@ -27,12 +27,17 @@ const InputBar = (props) => {
       fetch('/', {
         method  : 'POST',
         headers : { 'Content-Type' : 'application/x-www-form-urlencoded' },
-        body    : data,
+        body    : encode({ data })
       })
         // eslint-disable-next-line no-console
         .then(() => console.log('Form successfully submitted'))
         .catch((error) => alert(error));
     }
+  };
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('& ');
   };
 
   return (
