@@ -25,7 +25,7 @@ const InputBar = (props) => {
         Wish : wishInput.current.value
       };
       // console.info(encode({ 'form-name' : 'contact', ...data }));
-      fetch('/', {
+      fetch('https://main--marvelous-mooncake-ac1ba6.netlify.app/', {
         method  : 'POST',
         headers : { 'Content-Type' : 'application/x-www-form-urlencoded' },
         body    : encode({ 'form-name' : 'contact', ...data })
@@ -44,6 +44,7 @@ const InputBar = (props) => {
   return (
     <div className={classnames(styled.InputBar, className)}>
       <form name='contact' method='POST' data-netlify='true' className={styled.form}>
+        <input type="hidden" name="form-name" value="contact" />
         {!name && <div>Your Name: <input ref={nameInput} className={styled.input} /></div>}
         {name && <div>Your Wish: <input ref={wishInput} className={styled.input} /></div>}
         <p>
