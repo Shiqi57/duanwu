@@ -15,7 +15,6 @@ const InputBar = (props) => {
 
   const handleClick = (e) => {
     if (!name) {
-      console.info(e);
       e.preventDefault();
       setName(nameInput.current.value);
       setBtnCopy('Submit');
