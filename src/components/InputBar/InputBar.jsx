@@ -24,10 +24,11 @@ const InputBar = (props) => {
         Name : name,
         Wish : wishInput.current.value
       };
+      // console.info(encode({ 'form-name' : 'contact', ...data }));
       fetch('/', {
         method  : 'POST',
         headers : { 'Content-Type' : 'application/x-www-form-urlencoded' },
-        body    : encode({ data })
+        body    : encode({ 'form-name' : 'contact', ...data })
       })
         // eslint-disable-next-line no-console
         .then(() => console.log('Form successfully submitted'))
@@ -37,7 +38,7 @@ const InputBar = (props) => {
   const encode = (data) => {
     return Object.keys(data)
       .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-      .join('& ');
+      .join('&');
   };
 
   return (
