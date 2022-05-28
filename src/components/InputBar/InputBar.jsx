@@ -14,26 +14,28 @@ const InputBar = (props) => {
   const wishInput = useRef();
 
   const handleClick = (e) => {
-    e.preventDefault();
     if (!name) {
+      console.info(e);
+      e.preventDefault();
       setName(nameInput.current.value);
       setBtnCopy('Submit');
     }
-    else {
-      const data = {
-        Name : name,
-        Wish : wishInput.current.value
-      };
-      // console.info(encode({ 'form-name' : 'contact', ...data }));
-      fetch('https://main--marvelous-mooncake-ac1ba6.netlify.app/', {
-        method  : 'POST',
-        headers : { 'Content-Type' : 'application/x-www-form-urlencoded' },
-        body    : encode({ 'form-name' : 'contact', ...data })
-      })
-        // eslint-disable-next-line no-console
-        .then(() => console.log('Form successfully submitted'))
-        .catch((error) => alert(error));
-    }
+    // else {
+    //   const data = {
+    //     Name : name,
+    //     Wish : wishInput.current.value
+    //   };
+    //   // console.info(encode({ 'form-name' : 'contact', ...data }));
+    //   fetch('/', {
+    //     method  : 'POST',
+    //     headers : { 'Content-Type' : 'application/x-www-form-urlencoded' },
+    //     body    : encode({ 'form-name' : 'contact', ...data })
+    //   })
+    //     // eslint-disable-next-line no-console
+    //     .then(() => console.log('Form successfully submitted'))
+    //     .catch((error) => alert(error));
+      
+    // }
   };
   const encode = (data) => {
     return Object.keys(data)
@@ -48,7 +50,7 @@ const InputBar = (props) => {
         {!name && <div>Your Name: <input ref={nameInput} className={styled.input} /></div>}
         {name && <div>Your Wish: <input ref={wishInput} className={styled.input} /></div>}
         <p>
-          <button className={styled.submit} onClick={handleClick}>{btnCopy}</button>
+          <button type='submit' className={styled.submit} onClick={handleClick}>{btnCopy}</button>
         </p>
       </form>
     </div>
