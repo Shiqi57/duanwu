@@ -43,8 +43,7 @@ function ThreeCanvas(props) {
   useThreeLoadingManager({ onProgress : (progress) => setLoadProgress(progress) });
 
   return (
-    <div className={styled.Canvas} ref={rootElRef}
-      {...props}>
+    <div className={styled.Canvas} ref={rootElRef} {...props}>
       <Canvas
         className={styled.renderer}
         resize={{ polyfill : ResizeObserver }}

@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install",
+    "pre-commit": "echo \"Running Husky 🐶\n\" && lint-staged",
+    "component": "node scripts/component",
+    "store": "node scripts/store",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@juggle/resize-observer": "^3.3.1",
