@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import InputBar from '@/components/InputBar/InputBar';
+import InputBar from '@/components/InputBar/InputBar.jsx';
 import styled from './Landing.module.scss';
 
 const propTypes = { className : PropTypes.string };
