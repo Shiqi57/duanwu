@@ -25,6 +25,7 @@
     "@sanity/image-url": "^1.0.1",
     "@use-gesture/react": "^10.2.9",
     "animejs": "^3.2.1",
+    "canvas-sketch-util": "^1.10.0",
     "classnames": "^2.3.1",
     "device-detector-js": "^3.0.0",
     "framer-motion": "^6.2.8",

@@ -5,7 +5,10 @@ import { OrbitControls } from '@react-three/drei';
 import useThreeLoadingManager from '@/hooks/use-three-loading-manager';
 import { useCanvasStore } from '@/store';
 import { CANVAS_MAX_LOAD_PERCENTAGE } from '@/settings/settings.app';
-import ExampleModel from './ExampleModel/ExampleModel';
+import ParticleRiver from '@/components/Canvas/ParticleRiver/ParticleRiver.jsx';
+import PointRiver from '@/components/Canvas/PointRiver/PointRiver.jsx';
+import PointWave from '@/components/Canvas/PointWave/PointWave.jsx';
+import Ocean from '@/components/Canvas/Water/Water.jsx';
 import ExampleShaderObject from './ExampleShaderObject/ExampleShaderObject';
 import styled from './Canvas.module.scss';
 
@@ -51,6 +54,14 @@ function ThreeCanvas(props) {
         dpr={[1, 2]}
       >
         <OrbitControls />
+        
+        <Suspense fallback={null}>
+          <PointRiver />
+          {/* <ParticleRiver /> */}
+          {/* <PointWave /> */}
+          {/* <Ocean /> */}
+        </Suspense>
+        
         <ExampleShaderObject position={[1.5, 0, 0]} />
         {/* <Suspense fallback={null}>
           <LoadedWatcher />
