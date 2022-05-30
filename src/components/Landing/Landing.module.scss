@@ -4,7 +4,7 @@
   bottom: 0;
   @include flex-center;
   @include ls-semibold(32);
-  background-color: $black;
+  background-color: transparent;
   color: $pink;
   z-index: 2;
   justify-content: center;

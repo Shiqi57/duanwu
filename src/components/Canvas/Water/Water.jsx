@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import React, { Suspense, useRef, useMemo } from 'react';
-import { Canvas, extend, useThree, useLoader, useFrame } from '@react-three/fiber';
+import { extend, useThree, useLoader, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sky } from '@react-three/drei';
 import { Water } from 'three-stdlib';
 
@@ -19,14 +19,14 @@ const Ocean = () => {
       waterNormals,
       sunDirection    : new THREE.Vector3(0, 1, -1),
       sunColor        : '#f9d71c',
-      waterColor      : '#1da2d8',
-      distortionScale : 3.7,
+      waterColor      : '#1da2d8', //'#1da2d8'
+      distortionScale : 7,
       fog             : false,
       format          : gl.encoding
     }),
     [waterNormals]
   );
-  useFrame((state, delta) => (ref.current.material.uniforms.time.value += delta));
+  useFrame((state, alpha) => (ref.current.material.uniforms.time.value += alpha / 5));
   return <water ref={ref} args={[geom, config]} rotation-x={-Math.PI / 2} />;
 };
 

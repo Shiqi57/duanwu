@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  color    : '#0000ff',
+  color    : '#fca103',
   colorMix : 0.9,
 };
 
