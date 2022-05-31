@@ -53,11 +53,11 @@ const PointWave = (props) => {
     }
     particlesRef.current.geometry.attributes.position.needsUpdate = true;
   });
-
+  console.info(particlesRef.current);
   return (
     <Points ref={particlesRef} limit={10000}>
       <pointsMaterial
-        size={1}
+        size={0.5}
         transparent
         depthWrite={false}
         blending={THREE.AdditiveBlending}
@@ -70,9 +70,9 @@ const PointWave = (props) => {
         <Point
           key={i}
           position={[
-            (0.5 - Math.random()) * 60,
-            (0.5 - Math.random()) * 60,
-            (0.5 - Math.random()) * 60
+            (Math.random()),
+            (Math.random()),
+            (Math.random())
           ]}
           color={palette[Math.floor(Math.random() * palette.length)]}
         />

@@ -6,9 +6,11 @@ import useThreeLoadingManager from '@/hooks/use-three-loading-manager';
 import { useCanvasStore } from '@/store';
 import { CANVAS_MAX_LOAD_PERCENTAGE } from '@/settings/settings.app';
 import PointRiver from '@/components/Canvas/PointRiver/PointRiver.jsx';
+import Particles from '@/components/Canvas/Particle/Particle.jsx';
 import PointWave from '@/components/Canvas/PointWave/PointWave.jsx';
 import Box from '@/components/Canvas/Box/Box.jsx';
 import Ocean from '@/components/Canvas/Water/Water.jsx';
+import ExampleModel from '@/components/Canvas/ExampleModel/ExampleModel.jsx';
 import ExampleShaderObject from './ExampleShaderObject/ExampleShaderObject';
 import styled from './Canvas.module.scss';
 
@@ -52,7 +54,7 @@ function ThreeCanvas(props) {
         resize={{ polyfill : ResizeObserver }}
         gl={{ alpha : false }}
         dpr={[1, 2]}
-        camera={{ position : [1, 2, 7] }}
+        camera={{ position : [1, 2.5, 7] }}
       >
         <pointLight position={[0, 4, 4]} />
         <pointLight position={[2, 4, 4]} />
@@ -61,16 +63,18 @@ function ThreeCanvas(props) {
         <Suspense fallback={null}>
           {/* <PointRiver /> */}
           {/* <PointWave /> */}
-          <Ocean />
-          <Box />
+          <Particles />
+          <Ocean rotation={[Math.PI, 0, 0]} />
+          {/* <Box /> */}
         </Suspense>
         {/* <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={0.1} /> */}
         <Stars radius={50} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
         {/* <ExampleShaderObject position={[0, 0.5, 0]} /> */}
-        {/* <Suspense fallback={null}>
+        
+        <Suspense fallback={null}>
           <LoadedWatcher />
           <ExampleModel scale={[0.2, 0.2, 0.2]} position={[-1.5, 0, 0]} />
-        </Suspense> */}
+        </Suspense>
       </Canvas>
     </div>
   );
