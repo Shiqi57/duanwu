@@ -10,7 +10,7 @@ const ExampleModel = (props) => {
 
   const ref = useRef();
   useFrame((state, delta) => {
-    group.current.position.y = 0.4 + Math.sin(state.clock.elapsedTime) / 5;
+    group.current.position.y = 0.2 + Math.sin(state.clock.elapsedTime) / 5;
     group.current.position.x = Math.cos(state.clock.elapsedTime / 2) / 2;
   });
 

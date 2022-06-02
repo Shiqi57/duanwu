@@ -56,14 +56,15 @@ function ThreeCanvas(props) {
         dpr={[1, 2]}
         camera={{ position : [1, 2.5, 7] }}
       >
+        <ambientLight />
         <pointLight position={[0, 4, 4]} />
         <pointLight position={[2, 4, 4]} />
         {/* <color attach="background" args={['#fff']} /> */}
         <OrbitControls />
         <Suspense fallback={null}>
           {/* <PointRiver /> */}
-          {/* <PointWave /> */}
-          <Particles />
+          <PointWave />
+          {/* <Particles /> */}
           <Ocean rotation={[Math.PI, 0, 0]} />
           {/* <Box /> */}
         </Suspense>

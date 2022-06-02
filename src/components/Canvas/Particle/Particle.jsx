@@ -5,13 +5,17 @@ import * as THREE from 'three';
 import colors from 'nice-color-palettes';
 import { useFrame, useLoader } from '@react-three/fiber';
 // import './styles.css'
-
+const tempColor = new THREE.Color();
+const data = Array.from({ length : 1000 },
+  () => ({ color : colors[17][Math.floor(Math.random() * 5)], scale : 1 }));
+const palette = colors[Math.floor(Math.random() * colors.length)];
 const Particles = () => {
   const imgTex = useLoader(THREE.TextureLoader, '/circle.png');
   const mesh = useRef();
   const light = useRef();
   const count = 1000;
-  
+  const colorArray = useMemo(() => Float32Array.from(new Array(1000).fill()
+    .flatMap((_, i) => tempColor.set(data[i].color).toArray())), []);
   const dummy = useMemo(() => new THREE.Object3D(), []);
   // Generate some random positions, speed factors and timings
   const particles = useMemo(() => {
@@ -27,7 +31,7 @@ const Particles = () => {
     }
     return temp;
   }, [count]);
-  console.info(mesh.current);
+  console.info(mesh);
   // The innards of this hook will run every frame
   useFrame(state => {
     // Makes the light follow the mouse
@@ -50,7 +54,6 @@ const Particles = () => {
         (particle.my / 10) * b + zFactor + Math.cos((t / 10) * factor) + (Math.sin(t * 3) * factor) / 10
       );
       dummy.scale.set(s, s, s);
-      dummy.color = '#fff';
       dummy.rotation.set(s * 5, s * 5, s * 5);
       dummy.updateMatrix();
       // And apply the matrix to the instanced item
@@ -63,8 +66,43 @@ const Particles = () => {
     <>
       <pointLight ref={light} distance={40} intensity={8} color="lightblue" />
       <instancedMesh ref={mesh} args={[null, null, count]}>
-        <dodecahedronBufferGeometry attach="geometry" args={[0.2, 0]} />
-        <meshPhongMaterial attach="material" color="#050505"  />
+        {/* <sphereBufferGeometry attach="geometry" args={[0.2, 20, 20]}>
+        </sphereBufferGeometry> */}
+        <bufferGeometry attach="geometry">
+          <bufferAttribute
+            attachObject={['attributes', 'position']}
+            itemSize={3}
+          />
+        </bufferGeometry>
+
+        <pointsMaterial
+          attach="material"
+          map={imgTex}
+        
+          color='#006DA3'
+          // color={palette[Math.floor(Math.random() * palette.length)]}
+          size={0.5}
+          sizeAttenuation
+          transparent={false}
+          alphaTest={0.5}
+          opacity={1.0}
+        />
+        {/* <Point color={palette[Math.floor(Math.random() * palette.length)]} />
+        <pointsMaterial
+          size={0.5}
+          transparent
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+          sizeAttenuation
+          vertexColors
+          map={imgTex}
+          alphaMap={imgTex}
+        /> */}
+        {/* <meshStandardMaterial
+          transparent
+          attach="material"
+          map={imgTex}
+        /> */}
       </instancedMesh>
     </>
   );
