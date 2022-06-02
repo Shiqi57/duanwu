@@ -46,7 +46,7 @@ function ThreeCanvas(props) {
   }, [loadProgress, setIsLoaded]);
 
   useThreeLoadingManager({ onProgress : (progress) => setLoadProgress(progress) });
-
+  
   return (
     <div className={styled.Canvas} ref={rootElRef} {...props}>
       <Canvas
@@ -66,6 +66,7 @@ function ThreeCanvas(props) {
           <PointWave />
           {/* <Particles /> */}
           <Ocean rotation={[Math.PI, 0, 0]} />
+          <ExampleModel scale={[0.2, 0.2, 0.2]} position={[-1.5, 0, 0]} />
           {/* <Box /> */}
         </Suspense>
         {/* <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={0.1} /> */}
@@ -74,7 +75,7 @@ function ThreeCanvas(props) {
         
         <Suspense fallback={null}>
           <LoadedWatcher />
-          <ExampleModel scale={[0.2, 0.2, 0.2]} position={[-1.5, 0, 0]} />
+          
         </Suspense>
       </Canvas>
     </div>

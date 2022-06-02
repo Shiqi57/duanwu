@@ -31,7 +31,7 @@ const Particles = () => {
     }
     return temp;
   }, [count]);
-  console.info(mesh);
+
   // The innards of this hook will run every frame
   useFrame(state => {
     // Makes the light follow the mouse
@@ -75,21 +75,8 @@ const Particles = () => {
           />
         </bufferGeometry>
 
-        <pointsMaterial
-          attach="material"
-          map={imgTex}
-        
-          color='#006DA3'
-          // color={palette[Math.floor(Math.random() * palette.length)]}
-          size={0.5}
-          sizeAttenuation
-          transparent={false}
-          alphaTest={0.5}
-          opacity={1.0}
-        />
-        {/* <Point color={palette[Math.floor(Math.random() * palette.length)]} />
-        <pointsMaterial
-          size={0.5}
+        {/* <pointsMaterial
+          size={1}
           transparent
           depthWrite={false}
           blending={THREE.AdditiveBlending}
@@ -97,12 +84,14 @@ const Particles = () => {
           vertexColors
           map={imgTex}
           alphaMap={imgTex}
-        /> */}
-        {/* <meshStandardMaterial
+        />
+        <Point position={[0, 2, 0]} color={palette[Math.floor(Math.random() * palette.length)]} /> */}
+
+        <meshStandardMaterial
           transparent
           attach="material"
           map={imgTex}
-        /> */}
+        />
       </instancedMesh>
     </>
   );

@@ -3,11 +3,11 @@ import { useControls } from 'leva';
 import React, { useRef } from 'react';
 import * as THREE from 'three';
 import colors from 'nice-color-palettes';
-import { useFrame, useLoader } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 
 const palette = colors[Math.floor(Math.random() * colors.length)];
 
-const PointWave = () => {
+function Particles() {
   const { count, size, positionFactor, textureType, rotationSpeed, waveFactor } = useControls({
     textureType : {
       value : 1,
@@ -16,7 +16,7 @@ const PointWave = () => {
       step  : 1
     },
     count : {
-      value : 20,
+      value : 2000,
       min   : 1,
       max   : 10000
     },
@@ -37,7 +37,7 @@ const PointWave = () => {
     },
     rotationSpeed : 0.1
   });
-  const imgTex = useLoader(THREE.TextureLoader, '/circle.png');
+  const particleTexture = useTexture(`/circle.png`);
 
   const particlesRef = useRef();
 
@@ -45,7 +45,7 @@ const PointWave = () => {
     const elapsedTime = clock.getElapsedTime();
     particlesRef.current.rotation.x = elapsedTime * rotationSpeed;
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < count; i++) {
       const i3 = i * 3;
 
       const x = particlesRef.current.geometry.attributes.position.array[i3];
@@ -53,7 +53,7 @@ const PointWave = () => {
     }
     particlesRef.current.geometry.attributes.position.needsUpdate = true;
   });
-  
+
   return (
     <Points ref={particlesRef} limit={10000}>
       <pointsMaterial
@@ -63,22 +63,22 @@ const PointWave = () => {
         blending={THREE.AdditiveBlending}
         sizeAttenuation
         vertexColors
-        map={imgTex}
-        alphaMap={imgTex}
+        map={particleTexture}
+        alphaMap={particleTexture}
       />
-      {Array.from({ length : 2000 }).map((_, i) => (
+      {Array.from({ length : count }).map((_, i) => (
         <Point
           key={i}
           position={[
-            (0.5 - i),
-            (0.5 - i),
-            (0.5 - i)
+            (0.5 - Math.random()) * positionFactor,
+            (0.5 - Math.random()) * positionFactor,
+            (0.5 - Math.random()) * positionFactor
           ]}
           color={palette[Math.floor(Math.random() * palette.length)]}
         />
       ))}
     </Points>
   );
-};
+}
 
-export default PointWave;
+export { Particles };
