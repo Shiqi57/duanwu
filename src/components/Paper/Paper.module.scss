@@ -1,0 +1,179 @@
+.Paper {
+  //
+  z-index: 1;
+}
+$clr1: #f6e4de;
+$clr2: #F8F3E8;
+$clr3: darken($clr2, 2%);
+$clr4: #F3BCAA;
+.front {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 350px;
+  perspective: 800;
+}
+
+.back {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 350px;
+  opacity: 0;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.06);
+  // animation: show 0.5s 3s ease forwards;
+}
+
+//Folds
+.box {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: $clr1;
+  border: 25px solid $clr2;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  border-radius: 4px;
+  // .inside {
+  //   position: absolute;
+  //   width: 100px;
+  //   height: 100px;
+  //   border-radius: 50%;
+  //   background: rgba(darken($clr2, 6%), 0.6);
+  //   animation: grow 0.5s 3s cubic-bezier(0.66, -0.30, 0.66, 1) forwards;
+  // }
+  .one {
+    left: 100px;
+    bottom: -50px;
+  }
+
+  .two {
+    left: -50px;
+    bottom: -50px;
+  }
+  .three {
+    left: 100px;
+    bottom: 100px;
+  }
+
+  .four {
+    left: -50px;
+    bottom: 100px;
+  }
+
+  &:nth-child(1) {
+    background: $clr3;
+    border-radius: 5px 0 0 0;
+    border-right: none;
+    border-bottom: none;
+    // animation: clr 1s 1s ease forwards;
+  }
+
+  &:nth-child(2) {
+    background: $clr3;
+    border-radius: 0 5px 0 0;
+    left: 175px;
+    border-left: none;
+    border-bottom: none;
+    transform-origin: 0 0;
+    transform: rotateY(0);
+    // animation: fold 1s 1s ease forwards;
+  }
+
+  &:nth-child(3) {
+    background: $clr3;
+    border-radius: 0 0 0 5px;
+    top: 175px;
+    width: 50%;
+    opacity: 1;
+    border-top: none;
+    border-right: none;
+    transform: rotateX(0);
+    transform-origin: 0 0;
+    // animation: fold2 1s 2s ease forwards;
+  }
+
+  &:nth-child(4) {
+    background: $clr3;
+    border-radius: 0 0 5px 0;
+    top: 175px;
+    left: 175px;
+    opacity: 1;
+    border-top: none;
+    border-left: none;
+    transform: rotateX(0);
+    transform-origin: 0 0;
+    // animation: fold2 1s 2s ease forwards;
+  }
+}
+.playBox {
+  &:nth-child(1) {
+    // animation: clr 1s 2s ease forwards;
+  }
+
+  &:nth-child(2) {
+    animation: fold 1s 2s ease forwards;
+  }
+
+  &:nth-child(3) {
+    animation: fold2 1s 1s ease forwards;
+  }
+
+  &:nth-child(4) {
+    animation: fold2 1s 1s ease forwards;
+  }
+}
+
+//Animation
+@keyframes clr {
+  99% { background: $clr1;}
+  100% { background: $clr3;}
+}
+
+@keyframes fold {
+  0% {
+    opacity: 1;
+    background: $clr3;
+  }
+
+  25% {
+    opacity: 1;
+    background: $clr3;
+  }
+
+  40% {
+    opacity: 1;
+    background: $clr1;
+  }
+  100% {
+    background: $clr1;
+    transform: rotateY(-180deg);
+  }
+
+}
+
+@keyframes fold2 {
+
+  99% {
+    opacity: 1;
+    background: $clr1;
+  }
+  100% {
+    opacity: 0;
+    background: $clr1;
+    transform: rotateX(180deg);
+  }
+
+}
+
+@keyframes show {
+  100% { opacity: 1;}
+}
+
+// body
+//   background: #ccc
+//   overflow: hidden

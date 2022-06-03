@@ -3,18 +3,37 @@
   background: transparent;
   display: flex;
   justify-content: center;
+  z-index: 2;
 }
 .form {
   display: flex;
+  width: 350px;
+  height: 350px;
+  padding-top: 50px;
+  padding-bottom: 20px;
   @include ls-regular(20);
   align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
 }
 .input {
   padding: 5px 20px;
+  width: 200px;
   @include ls-regular(15);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.inputArea {
+  width: 260px;
+  height: 100px;
+  font-size: 14px;
+}
+.label {
+  font-size: 20px;
+  color: #101010;
 }
 .submit {
-  border-radius: 20px;
+  border-radius: 10px;
   @include ls-regular(15);
   padding: 10px 20px;
   cursor: pointer;

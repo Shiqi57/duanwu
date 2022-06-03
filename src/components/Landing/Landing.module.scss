@@ -7,7 +7,7 @@
 
   position: absolute;
   width: 100%;
-  bottom: 0;
+  height: 100%;
   @include flex-center;
   @include ls-semibold(32);
   background-color: transparent;

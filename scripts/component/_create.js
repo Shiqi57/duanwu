@@ -4,7 +4,6 @@ const fs = require('fs');
 const chalk = require('chalk');
 const maxstache = require('maxstache');
 const changeCase = require('change-case');
-
 const SETTINGS = require('./_settings');
 
 function template(componentName, input, output) {
@@ -33,34 +32,26 @@ async function createDirectory(componentOutDir) {
   await mkdirp(componentOutDir);
 }
 
-async function createReactComponent(componentName, isPage) {
+async function createReactComponent(componentName) {
   if (!componentName) return;
-  const templateLocation = isPage
-    ? SETTINGS.TEMPLATE.PAGE_JSX
-    : SETTINGS.TEMPLATE.COMPONENT_JSX;
-  const outputDir = isPage
-    ? SETTINGS.OUTPUT.PAGES_DIR
-    : SETTINGS.OUTPUT.COMPONENTS_DIR;
-  const outputFile = isPage ? 'index.js' : `${componentName}.jsx`;
+  const templateLocation = SETTINGS.TEMPLATE.COMPONENT_JSX;
+  const outputDir = SETTINGS.OUTPUT.COMPONENTS_DIR;
+  const outputFile = `${componentName}.jsx`;
 
   await Promise.all([
     template(
       componentName,
       templateLocation,
-      path.resolve(outputDir, isPage ? componentName : componentName.toLowerCase(), outputFile)
-    ),
+      path.resolve(outputDir, componentName, outputFile)
+    )
   ]);
 }
 
-async function createSass(componentName, isPage) {
+async function createSass(componentName) {
   if (!componentName) return;
 
-  const templateLocation = isPage
-    ? SETTINGS.TEMPLATE.PAGE_SASS
-    : SETTINGS.TEMPLATE.COMPONENT_SASS;
-  const outputDir = isPage
-    ? SETTINGS.OUTPUT.PAGES_DIR
-    : SETTINGS.OUTPUT.COMPONENTS_DIR;
+  const templateLocation = SETTINGS.TEMPLATE.COMPONENT_SASS;
+  const outputDir = SETTINGS.OUTPUT.COMPONENTS_DIR;
 
   await Promise.all([
     template(
@@ -68,19 +59,17 @@ async function createSass(componentName, isPage) {
       templateLocation,
       path.resolve(
         outputDir,
-        isPage ? componentName : componentName.toLowerCase(),
-        `${isPage ? 'index' : componentName}.module.scss`
+        componentName,
+        `${componentName}.module.scss`
       )
-    ),
+    )
   ]);
 }
 
-async function createStories(componentName, isPage) {
+async function createStories(componentName) {
   if (!componentName) return;
 
-  const templateLocation = isPage
-    ? SETTINGS.TEMPLATE.PAGE_STORIES
-    : SETTINGS.TEMPLATE.COMPONENT_STORIES;
+  const templateLocation = SETTINGS.TEMPLATE.COMPONENT_STORIES;
 
   await Promise.all([
     template(
@@ -91,7 +80,7 @@ async function createStories(componentName, isPage) {
         componentName,
         `${componentName}.stories.jsx`
       )
-    ),
+    )
   ]);
 }
 
@@ -114,23 +103,21 @@ async function checkDirExist(componentOutDir) {
 
 async function create(promptAnswers) {
   const {
-    component, stories, isPage
+    component, stories
   } = promptAnswers;
   const componentPascal = changeCase.pascalCase(component);
-  const componentOutDir = isPage
-    ? path.resolve(SETTINGS.OUTPUT.PAGES_DIR, componentPascal.toLowerCase())
-    : path.resolve(SETTINGS.OUTPUT.COMPONENTS_DIR, componentPascal);
+  const componentOutDir = path.resolve(SETTINGS.OUTPUT.COMPONENTS_DIR, componentPascal);
 
   if (await checkDirExist(componentOutDir)) return;
 
   await createDirectory(componentOutDir);
-  await createReactComponent(componentPascal, isPage);
-  await createSass(componentPascal, isPage);
-  stories && (await createStories(componentPascal, isPage));
+  await createReactComponent(componentPascal);
+  await createSass(componentPascal);
+  stories && (await createStories(componentPascal));
 
   console.info(
     chalk.green(
-      `${isPage ? 'Page' : 'Component'} created at ${path.relative(
+      `Component created at ${path.relative(
         process.cwd(),
         componentOutDir
       )} 🚀`
@@ -138,4 +125,4 @@ async function create(promptAnswers) {
   );
 }
 
-module.exports = { create, };
+module.exports = { create };

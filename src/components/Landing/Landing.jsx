@@ -1,6 +1,10 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import InputBar from '@/components/InputBar/InputBar.jsx';
+import Paper from '@/components/Paper/Paper.jsx';
+import useAppStore from '@/store/_app.js';
 import styled from './Landing.module.scss';
 
 const propTypes = { className : PropTypes.string };
@@ -11,6 +15,7 @@ const Landing = (props) => {
 
   return (
     <div className={classnames(styled.Landing, className)}>
+      <Paper />
       <InputBar />
     </div>
   );
