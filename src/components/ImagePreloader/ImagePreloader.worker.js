@@ -18,7 +18,7 @@ const useImagePreloaderWorker = (src) => {
         setPreloadedImage(objectURL);
       }
     } catch (error) {
-      console.error('handleWorkerMessage error:', error.message);
+      // console.error('handleWorkerMessage error:', error.message);
       setWorkerImagePreloadError(true);
     }
   };

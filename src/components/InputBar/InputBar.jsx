@@ -17,7 +17,7 @@ const InputBar = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
     if (!name) {
-      
+
       setName(nameInput.current.value);
       setBtnCopy('Submit');
     }
@@ -37,7 +37,7 @@ const InputBar = (props) => {
         // eslint-disable-next-line no-console
         .then(() => console.log('Form successfully submitted'))
         .catch((error) => alert(error));
-      
+
     }
   };
   const encode = (data) => {
@@ -51,17 +51,25 @@ const InputBar = (props) => {
 
   return (
     <div className={classnames(styled.InputBar, className)}>
-      <form name='contact' method='POST' data-netlify='true' className={styled.form}>
-        <input type="hidden" name="form-name" value="contact" />
-        {!name && <div>Your Name: <input ref={nameInput} className={styled.input} name='name' /></div>}
+      <form name='contact' method='POST'
+        data-netlify='true' className={styled.form}>
+        <input type="hidden" name="form-name"
+          value="contact" />
+        {!name && (
+          <div>Your Name: <input ref={nameInput} className={styled.input}
+            name='name' /></div>
+        )}
         {name && (
           <div>
-            Your Wish: <input ref={wishInput} className={styled.input} name='wish' onChange={updateWish} />
+            Your Wish: <input ref={wishInput} className={styled.input}
+              name='wish' onChange={updateWish} />
           </div>
         )}
-        <input type="hidden" name="test-field" value="testAll" />
+        <input type="hidden" name="test-field"
+          value="testAll" />
         <p>
-          <button type='submit' className={styled.submit} onClick={handleClick}>{btnCopy}</button>
+          <button type='submit' className={styled.submit}
+            onClick={handleClick}>{btnCopy}</button>
         </p>
       </form>
     </div>
