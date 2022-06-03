@@ -1,0 +1,38 @@
+@use 'sass:math';
+@import 'vars';
+
+/**
+ * Simple function to convert pixel value to vw value
+ */
+@function px-vw($pixels, $width: $default-width) {
+  @return ($pixels / $width * 100vw);
+}
+
+/**
+ * Simple function to convert pixel value to vh value
+ */
+@function px-vh($pixels, $height: $default-height) {
+  @return ($pixels / $height * 100vh);
+}
+
+/**
+ * Convert pixel value to rem
+ */
+@function px($px) {
+  @return $px * 0.1rem;
+}
+
+/**
+ * Division
+ */
+@function divide($dividend, $divisor) {
+  @return math.div($dividend, $divisor);
+}
+
+/**
+ * Use dynamic vh based on windowHeight.
+ * Check @composables/use-window-resize-listener.js for more information.
+ */
+@function vh($val: 0) {
+  @return calc(#{$val} * var(--vh-val));
+}

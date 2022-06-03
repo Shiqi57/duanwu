@@ -1,0 +1,35 @@
+.ImagePreloader {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+
+  .loaded {
+    transform: scale(0.5);
+  }
+
+  .aspectRatioContainer {
+    position: relative;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+  }
+
+  .aspectRatioContainerInner {
+    float: left;
+  }
+
+  .fade--slow { transition: opacity 0.8s linear; }
+  .fade--normal { transition: opacity 0.4s linear; }
+  .fade--fast { transition: opacity 0.2s linear; }
+  .fade--disabled { transition: none; }
+
+  .image {
+    @include full-size;
+    object-position: 50% 50%;
+  }
+  .image--cover { object-fit: cover; }
+  .image--contain { object-fit: contain; }
+  .image--fill { object-fit: fill; }
+  .image--scale-down { object-fit: scale-down; }
+}

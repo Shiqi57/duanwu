@@ -1,0 +1,90 @@
+{
+  "name": "reflektor-boilerplate-react-next",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=16.13.2",
+    "yarn": ">=1.22"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prepare": "husky install",
+    "pre-commit": "echo \"Running Husky 🐶\n\" && lint-staged",
+    "component": "node scripts/component",
+    "store": "node scripts/store",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@juggle/resize-observer": "^3.3.1",
+    "@react-three/a11y": "^2.2.3",
+    "@react-three/drei": "^7.20.5",
+    "@react-three/fiber": "^7.0.19",
+    "@react-three/postprocessing": "^2.0.5",
+    "breakpoint-sass": "^2.7.1",
+    "classnames": "^2.3.1",
+    "device-detector-js": "^3.0.0",
+    "gsap": "^3.9.1",
+    "leva": "^0.9.27",
+    "lodash": "^4.17.21",
+    "next": "12.1.0",
+    "next-plugin-svgr": "^1.1.1",
+    "nice-color-palettes": "^3.0.0",
+    "prop-types": "^15.7.2",
+    "r3f-perf": "^4.9.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "snifferjs": "^4.1.0",
+    "three": "^0.137.0",
+    "url-parse": "^1.5.6",
+    "zustand": "^3.6.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "@reflektor/eslint-plugin-react": "^1.1.2",
+    "@storybook/addon-actions": "^6.4.15",
+    "@storybook/addon-essentials": "^6.4.15",
+    "@storybook/addon-links": "^6.4.15",
+    "@storybook/builder-webpack5": "^6.4.15",
+    "@storybook/manager-webpack5": "^6.4.15",
+    "@storybook/react": "^6.4.15",
+    "@welldone-software/why-did-you-render": "^6.2.1",
+    "babel-loader": "^8.2.3",
+    "chalk": "^4.1.2",
+    "change-case": "^4.1.2",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^12.0.4",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^7.0.4",
+    "inquirer": "^8.2.0",
+    "lint-staged": "^11.2.6",
+    "maxstache": "^1.0.7",
+    "mkdirp": "^1.0.4",
+    "postcss": "^8.4.7",
+    "postcss-scss": "^4.0.3",
+    "sass": "^1.43.4",
+    "simple-zustand-devtools": "^1.0.1",
+    "storybook-addon-next": "^1.6.0",
+    "stylelint": "^14.0.1",
+    "stylelint-scss": "^4.0.0",
+    "stylelint-selector-bem-pattern": "^2.1.1",
+    "webpack": "^5.64.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint"
+    ],
+    "*.scss": [
+      "stylelint"
+    ]
+  }
+}

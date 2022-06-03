@@ -1,0 +1,7 @@
+.Landing {
+  @include full-size;
+  @include flex-center;
+  @include ls-semibold(32);
+  background-color: $grey;
+  color: $pink;
+}

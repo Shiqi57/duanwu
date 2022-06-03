@@ -1,0 +1,165 @@
+@use 'sass:math';
+@import 'vars';
+@import 'functions';
+
+@mixin gpu {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+
+  .safari & {
+    perspective: none; /* otherwise text and icons become blurry */
+  }
+}
+
+@function vh($val: 0) {
+  @return calc(#{$val} * var(--vh-val));
+}
+
+@mixin full-size($position : absolute) {
+  position: $position;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin flex-center($direction : column) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin body-scroll-lock {
+  @include full-size(absolute);
+  width: 100vw;
+  height: vh(100);
+  overflow: hidden;
+}
+
+@mixin full-size-scroll-lock {
+  @include full-size(absolute);
+  overflow-y: scroll;
+}
+
+@mixin no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  user-select: none; /* Non-prefixed version */
+  outline: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: rgba($black, 0);
+  &:focus {
+    -webkit-touch-callout: none; /* iOS Safari */
+    outline: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: rgba($black, 0);
+  }
+}
+
+@mixin clear-fix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin input-no-border {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  outline-width: 0;
+}
+
+@mixin background($size) {
+  background-size: $size;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+@mixin webkit-smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/**
+ * This mixin can be used to set the object-fit polyfill:
+ * @include object-fit(contain);
+ * or object-fit and object-position:
+ * @include object-fit(cover, top);
+ */
+@mixin object-fit($fit: fill, $position: null) {
+  -o-object-fit: $fit;
+  object-fit: $fit;
+
+  @if $position {
+    -o-object-position: $position;
+    object-position: $position;
+    font-family: 'object-fit: #{$fit}; object-position: #{$position}';
+  } @else {
+    font-family: 'object-fit: #{$fit}';
+  }
+}
+
+/* Hide up/down arrows */
+@mixin input-number-no-spinner {
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+  }
+}
+
+/* $value argument must be 1 or 0 */
+@mixin auto-alpha($alpha, $duration: 0.5s) {
+  opacity: $alpha;
+
+  @if $alpha == 0 {
+    visibility: hidden;
+    transition: opacity $duration $easeInSine, visibility $duration $easeInSine;
+  } @else {
+    visibility: visible;
+    transition: opacity $duration $easeOutSine, visibility $duration $easeOutSine;
+  }
+}
+
+/*
+ This mixin is used to create a container of a specific aspect ratio
+ $container-width: value should be percent ex. 100%, 90%
+ $height: value should be a number i.e. 1.3, 1.4. (height ratio relative to width)
+ The mixin will handle converting it into a percentage
+*/
+@mixin container-aspect-ratio($container-width, $height) {
+
+  /* Container for image */
+  position: relative;
+  width: $container-width;
+  display: block;
+  overflow: hidden;
+  &::before {
+    content: '';
+    float: left;
+    padding-top: $height * 100%;
+  }
+}
+
+@mixin non-functional-overlay() {
+  @include full-size;
+  @include flex-center;
+  @include ls-semibold(32);
+  text-align: center;
+  background-color: $grey;
+  color: $pink;
+}

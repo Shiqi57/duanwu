@@ -1,0 +1,51 @@
+/*
+ * *************************************************************************************
+ * Typography Mixins and stylings
+ * *************************************************************************************
+ */
+
+/**
+ * This mixin can be used to calculate rem unit for fonts
+ * @include font-rem(pixels)
+ */
+@function font-rem($pixels) {
+  $rem : var(--font-rem);
+  @return calc(#{$pixels} / 10 * #{$rem}) ;
+}
+
+/*
+ * @mixin font-props
+ * This mixin requires three arguments: size, letter-spacing, and line-height.
+ * Each argument is a unitless number.
+ */
+@mixin font-props($size, $letter-spacing, $line-height) {
+  font-size: font-rem($size);
+  letter-spacing: #{$letter-spacing}em;
+  line-height: #{$line-height}em;
+}
+
+/*
+ * *************************************************************************************
+ * Project fonts mixins
+ * *************************************************************************************
+ */
+$ls : 'League Spartan', Helvetica, Arial, sans-serif;
+
+/*
+ * ****************************
+ * Aeonik mixins
+ */
+
+@mixin ls-regular($size : 10, $letter-spacing : 0, $line-height: 1) {
+  @include font-props($size, $letter-spacing, $line-height);
+  font-family: $ls;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin ls-semibold($size : 10, $letter-spacing : 0, $line-height: 1) {
+  @include font-props($size, $letter-spacing, $line-height);
+  font-family: $ls;
+  font-weight: 600;
+  font-style: normal;
+}
