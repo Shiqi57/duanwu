@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import InputBar from '@/components/InputBar/InputBar.jsx';
 import styled from './Landing.module.scss';
 
 const propTypes = { className : PropTypes.string };
@@ -10,7 +11,7 @@ const Landing = (props) => {
 
   return (
     <div className={classnames(styled.Landing, className)}>
-      cool website 🚀
+      <InputBar />
     </div>
   );
 };

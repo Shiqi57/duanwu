@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useRef } from 'react';
 import { ResizeObserver } from '@juggle/resize-observer';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Sky, Stars } from '@react-three/drei';
 import useThreeLoadingManager from '@/hooks/use-three-loading-manager';
 import { useCanvasStore } from '@/store';
 import { CANVAS_MAX_LOAD_PERCENTAGE } from '@/settings/settings.app';
@@ -51,13 +51,22 @@ function ThreeCanvas(props) {
         resize={{ polyfill : ResizeObserver }}
         gl={{ alpha : false }}
         dpr={[1, 2]}
+        camera={{ position : [1, 2.5, 7] }}
       >
-        <Ocean />
+        <ambientLight />
+        <pointLight position={[0, 4, 4]} intensity={0.2} />
+        <pointLight position={[2, 4, 4]} intensity={0.2} />
         <OrbitControls />
         <Suspense fallback={null}>
+          <Ocean />
           <Points />
-          <ExampleModel scale={[0.2, 0.2, 0.2]} position={[-1.5, 0, 0]} />
+          <ExampleModel scale={[0.1, 0.1, 0.1]} position={[-1.5, 0, 0]} />
         </Suspense>
+        <Stars radius={50} depth={50}
+          count={5000} factor={4}
+          saturation={0} fade
+          speed={1} />
+
       </Canvas>
     </div>
   );

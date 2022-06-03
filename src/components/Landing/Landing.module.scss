@@ -1,7 +1,18 @@
 .Landing {
-  @include full-size;
+  // @include full-size;
+  // @include flex-center;
+  // @include ls-semibold(32);
+  // background-color: $grey;
+  // color: $pink;
+
+  position: absolute;
+  width: 100%;
+  bottom: 0;
   @include flex-center;
   @include ls-semibold(32);
-  background-color: $grey;
+  background-color: transparent;
   color: $pink;
+  z-index: 2;
+  justify-content: center;
+  padding-bottom: px(30);
 }
