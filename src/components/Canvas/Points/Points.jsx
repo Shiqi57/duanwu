@@ -5,44 +5,17 @@ import * as THREE from 'three';
 import colors from 'nice-color-palettes';
 import { useFrame, useLoader } from '@react-three/fiber';
 
-const palette = colors[Math.floor(Math.random() * colors.length)];
+const colorArr = [21, 13, 27, 96, 95, 30, 31, 10, 24, 1, 17];
+const colorNum = colorArr[Math.floor(Math.random() * colorArr.length)];
+const palette = colors[colorNum];
 
 const PointWave = () => {
-  // const { count, size, positionFactor, textureType, rotationSpeed, waveFactor } = useControls({
-  //   textureType : {
-  //     value : 1,
-  //     min   : 1,
-  //     max   : 13,
-  //     step  : 1
-  //   },
-  //   count : {
-  //     value : 20,
-  //     min   : 1,
-  //     max   : 10000
-  //   },
-  //   size : {
-  //     value : 2,
-  //     min   : 1,
-  //     max   : 20
-  //   },
-  //   positionFactor : {
-  //     value : 200,
-  //     min   : 5,
-  //     max   : 200
-  //   },
-  //   waveFactor : {
-  //     value : 30,
-  //     min   : 1,
-  //     max   : 500
-  //   },
-  //   rotationSpeed : 0.1
-  // });
 
-  const size = 0.7;
+  const size = 4;
   const waveFactor = 30;
   const positionFactor = 80;
 
-  const imgTex = useLoader(THREE.TextureLoader, '/textures/circle.png');
+  const imgTex = useLoader(THREE.TextureLoader, '/textures/point.png');
 
   const particlesRef = useRef();
 

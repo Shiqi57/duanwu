@@ -112,7 +112,7 @@ $clr4: #F3BCAA;
 }
 .playBox {
   &:nth-child(1) {
-    // animation: clr 1s 2s ease forwards;
+    animation: clr 1s 2s ease forwards;
   }
 
   &:nth-child(2) {
@@ -130,19 +130,19 @@ $clr4: #F3BCAA;
 
 //Animation
 @keyframes clr {
-  99% { background: $clr1;}
-  100% { background: $clr3;}
+  0% { background: $clr1;}
+  100% { background: $clr1;}
 }
 
 @keyframes fold {
   0% {
     opacity: 1;
-    background: $clr3;
+    background: $clr1;
   }
 
   25% {
     opacity: 1;
-    background: $clr3;
+    background: $clr1;
   }
 
   40% {

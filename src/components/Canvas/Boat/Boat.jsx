@@ -5,12 +5,12 @@ import { useGLTF } from '@react-three/drei';
 import { useFrame, useLoader } from '@react-three/fiber';
 import useAppStore from '@/store/_app.js';
 
-const ExampleModel = (props) => {
+const Boat = (props) => {
   const group = useRef();
+  const mat = useRef();
   const { nodes } = useGLTF('/models/boat.glb');
   const texture = useLoader(THREE.TextureLoader, '/textures/wood-old.jpg');
   const formSubmited = useAppStore(state => state.formSubmited);
-  const ref = useRef();
   useFrame((state, delta) => {
     group.current.position.y = 0.2 + Math.sin(state.clock.elapsedTime) / 5;
     group.current.position.x = Math.cos(state.clock.elapsedTime / 2) / 2;
@@ -18,21 +18,23 @@ const ExampleModel = (props) => {
 
   useEffect(() => {
     if (formSubmited) {
-      gsap.to(
+      const tl = gsap.timeline();
+      tl.to(
         group.current.position,
         {
           z        : group.current.position.z - 100,
-          duration : 30,
-          delay    : 6
+          duration : 25,
+          delay    : 6,
+          ease     : 'power1.in'
         }
       );
-      gsap.to(
-        group.current.position,
+      tl.to(
+        mat.current,
         {
-          opacity  : 0,
-          duration : 4,
-          delay    : 10,
-        }
+          opacity  : '0',
+          duration : 1
+        },
+        '<'
       );
     }
   }, [formSubmited]);
@@ -49,10 +51,10 @@ const ExampleModel = (props) => {
         geometry={nodes.boat.geometry}
         rotation={[0, Math.PI, 0]}
       >
-        <meshStandardMaterial map={texture} />
+        <meshStandardMaterial ref={mat} map={texture} />
       </mesh>
     </group>
   );
 };
 
-export default ExampleModel;
+export default Boat;

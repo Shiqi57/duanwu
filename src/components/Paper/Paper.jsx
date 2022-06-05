@@ -16,17 +16,7 @@ const Paper = (props) => {
 
   useEffect(() => {
     if (formSubmited) {
-      setPlay(formSubmited);
-      gsap.to(
-        ref.current,
-        {
-          scale    : 0.2,
-          rotate   : 160,
-          opacity  : 0,
-          duration : 3,
-          delay    : 3
-        }
-      );
+      playAnim();
     }
   }, [formSubmited]);
 
@@ -35,11 +25,25 @@ const Paper = (props) => {
     { [styled.playBox] : play }
   );
 
+  const playAnim = () => {
+    setPlay(true);
+    gsap.to(
+      ref.current,
+      {
+        scale           : 0.2,
+        rotation        : gsap.getProperty(ref.current, 'rotation') + 160,
+        transformOrigin : 'center, center',
+        opacity         : 0,
+        duration        : 3,
+        delay           : 3
+      }
+    );
+  };
+
   return (
-    <div ref={ref} className={classnames(styled.Paper, className)}>
-      {/* <button onClick={() => setPlay(true)}>play</button> */}
-      <div className={styled.back} />
-      <div className={styled.front}>
+    <div className={classnames(styled.Paper, className)}>
+      {/* <button style={{ position : 'absolute' }} onClick={playAnim}>play</button> */}
+      <div className={styled.front} ref={ref}>
         <div className={boxClasses}><div className={styled.one} /></div>
         <div className={boxClasses}><div className={styled.two} /></div>
         <div className={boxClasses}><div className={styled.three} /></div>

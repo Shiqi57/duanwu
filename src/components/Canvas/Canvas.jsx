@@ -5,7 +5,7 @@ import { OrbitControls, Sky, Stars } from '@react-three/drei';
 import useThreeLoadingManager from '@/hooks/use-three-loading-manager';
 import { useCanvasStore } from '@/store';
 import { CANVAS_MAX_LOAD_PERCENTAGE } from '@/settings/settings.app';
-import ExampleModel from './ExampleModel/ExampleModel';
+import Boat from './Boat/Boat.jsx';
 import Points from './Points/Points.jsx';
 import Ocean from  './Water/Water.jsx';
 import styled from './Canvas.module.scss';
@@ -60,7 +60,7 @@ function ThreeCanvas(props) {
         <Suspense fallback={null}>
           <Ocean />
           <Points />
-          <ExampleModel scale={[0.1, 0.1, 0.1]} position={[-1.5, 0, 0]} />
+          <Boat scale={[0.1, 0.1, 0.1]} position={[-1.5, 0, 0]} />
         </Suspense>
         <Stars radius={50} depth={50}
           count={5000} factor={4}
