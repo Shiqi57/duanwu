@@ -7,8 +7,8 @@ export default function Home() {
   return (
     <div className={styled.Home}>
       <PageHead
-        title="A Website"
-        description="This is a website"
+        title="Trevi Fountain"
+        description="This is a Trevi Fountain"
       />
       <ThreeCanvas />
       <Landing />

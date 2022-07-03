@@ -65,14 +65,14 @@ const PageHead = (props) => {
         -- Social sharing meta tags --
         -- Source: https://css-tricks.com/essential-meta-tags-social-media/ --
       */}
-      <meta property="og:title" content="A Website" />
+      <meta property="og:title" content="Trevi Fountain" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="/images/share-fb.jpg" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:url" content="#" />
-      <meta property="og:description" content="A Website" />
-      <meta property="og:site_name" content="A Website" />
+      <meta property="og:description" content="Trevi Fountain" />
+      <meta property="og:site_name" content="Trevi Fountain" />
 
       {/* Twitter */}
       <meta property="twitter:title" content={twitter.title} />
